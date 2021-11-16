@@ -67,9 +67,11 @@ Each stage of the ETL has its own script to run ONLY that stage. Make sure you b
 | Extract   | `npm run extract`   | --extract   | Will fetch all data from the DNA Stack data table APIs. This data is stored in mongo for manipulation in the next step |
 | Transform | `npm run transform` | --transform | Compiles all data fetched during the extract stage into sequence-centric documents and stores these in mongo.          |
 | Load      | `npm run load`      | --load      | Creates a new ElasticSearch index and inserts each of the sequence-centric documents created in the Transform stage.   |
+| All       | `npm run all`       | --all       | Runs all 3 stages in a single run.                                                                                     |
 
 > **Warning**  
-> Each stage is destructive, it will remove then replace all previously extracted or transformed data stored in mongo.
+> The extract and transform stages are destructive, they will remove then replace all previously extracted or transformed data stored in mongo.
+> The load stage will craete a new, versioned index and swap this index into the search alias. The number of old indices to keep is configurable in Rollcall.
 
 ## CLI Arguments
 

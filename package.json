@@ -4,7 +4,7 @@
   "description": "Extract DNAStack Host data and transform it into Sequence-centric ElasticSearch index",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && NODE_PATH=./src tsc",
+    "build": "NODE_PATH=./src tsc",
     "extract": "node dist --extract",
     "transform": "node --max-old-space-size=4096 dist --transform",
     "load": "node dist --load",
@@ -40,14 +40,14 @@
     "url-join": "^4.0.1",
     "winston": "^3.3.3"
   },
-  "prettier": {
-    "printWidth": 120,
-    "trailingComma": "all",
-    "singleQuote": true
-  },
   "devDependencies": {
     "@types/lodash": "^4.14.176",
     "@types/node-fetch": "^2.0.0",
     "@types/url-join": "^4.0.1"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "trailingComma": "all",
+    "singleQuote": true
   }
 }

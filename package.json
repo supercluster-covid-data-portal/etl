@@ -1,0 +1,53 @@
+{
+  "name": "etl",
+  "version": "1.0.0",
+  "description": "Extract DNAStack Host data and transform it into Sequence-centric ElasticSearch index",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && NODE_PATH=./src tsc",
+    "extract": "node dist --extract",
+    "transform": "node --max-old-space-size=4096 dist --transform",
+    "load": "node dist --load",
+    "all": "node --max-old-space-size=4096 dist --all",
+    "dev": "npm run build && npm run all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supercluster-covid-data-portal/etl.git"
+  },
+  "keywords": [
+    "etl",
+    "supercluster",
+    "dnastack",
+    "typescript",
+    "mongo"
+  ],
+  "author": "OICR",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/supercluster-covid-data-portal/etl/issues"
+  },
+  "homepage": "https://github.com/supercluster-covid-data-portal/etl#readme",
+  "dependencies": {
+    "@elastic/elasticsearch": "7.13.0",
+    "@supercharge/promise-pool": "^2.0.0",
+    "commander": "^8.3.0",
+    "dotenv": "^10.0.0",
+    "lodash": "^4.17.21",
+    "mongodb": "^4.1.4",
+    "node-fetch": "^2.6.1",
+    "typescript": "^4.4.4",
+    "url-join": "^4.0.1",
+    "winston": "^3.3.3"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "trailingComma": "all",
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.176",
+    "@types/node-fetch": "^2.0.0",
+    "@types/url-join": "^4.0.1"
+  }
+}

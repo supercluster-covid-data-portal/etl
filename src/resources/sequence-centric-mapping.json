@@ -1,0 +1,543 @@
+{
+  "settings": {
+    "index.number_of_shards": 3
+  },
+  "mappings": {
+    "_meta": {
+      "version": "0.1"
+    },
+    "dynamic": false,
+    "properties": {
+      "amplicon_pcr_primer_scheme": {
+        "type": "text"
+      },
+      "amplicon_size": {
+        "type": "keyword"
+      },
+      "bioinformatics_protocol": {
+        "type": "text"
+      },
+      "breadth_of_coverage_value": {
+        "type": "keyword"
+      },
+      "collections": {
+        "properties": {
+          "collection_id": {
+            "type": "keyword",
+            "fields": {
+              "text": {
+                "type": "text"
+              }
+            }
+          },
+          "collection_name": {
+            "type": "keyword"
+          }
+        }
+      },
+      "consensus_genome_length": {
+        "type": "integer"
+      },
+      "consensus_sequence_filename": {
+        "type": "text"
+      },
+      "consensus_sequence_filepath": {
+        "type": "text"
+      },
+      "consensus_sequence_name": {
+        "type": "keyword"
+      },
+      "consensus_sequence_software_name": {
+        "type": "keyword"
+      },
+      "consensus_sequence_software_version": {
+        "type": "keyword"
+      },
+      "data_source": {
+        "properties": {
+          "data_source_id": {
+            "type": "keyword",
+            "fields": {
+              "text": {
+                "type": "text"
+              }
+            }
+          },
+          "data_source_name": {
+            "type": "keyword"
+          }
+        }
+      },
+      "date_submitted": {
+        "type": "date"
+      },
+      "dehosting_method": {
+        "type": "keyword"
+      },
+      "depth_of_coverage_threshold": {
+        "type": "keyword"
+      },
+      "depth_of_coverage_value": {
+        "type": "keyword"
+      },
+      "fast5_filename": {
+        "type": "text"
+      },
+      "fast5_filepath": {
+        "type": "text"
+      },
+      "files": {
+        "properties": {
+          "drs_filepath": {
+            "type": "text"
+          },
+          "file_id": {
+            "type": "keyword",
+            "fields": {
+              "text": {
+                "type": "text"
+              }
+            }
+          },
+          "file_type": {
+            "type": "keyword"
+          }
+        }
+      },
+      "flow_cell_barcode": {
+        "type": "keyword"
+      },
+      "genbank_ena_ddbj_accession": {
+        "type": "keyword"
+      },
+      "gisaid_accession": {
+        "type": "keyword"
+      },
+      "gisaid_virus_name": {
+        "type": "keyword"
+      },
+      "host": {
+        "properties": {
+          "complications": {
+            "type": "keyword"
+          },
+          "destination_of_most_recent_travel_city": {
+            "type": "keyword"
+          },
+          "destination_of_most_recent_travel_country": {
+            "type": "keyword"
+          },
+          "destination_of_most_recent_travel_county_region": {
+            "type": "keyword"
+          },
+          "destination_of_most_recent_travel_postal_code": {
+            "type": "keyword"
+          },
+          "destination_of_most_recent_travel_state_province_territory": {
+            "type": "keyword"
+          },
+          "exposure_contact_level": {
+            "type": "keyword"
+          },
+          "exposure_details": {
+            "type": "text"
+          },
+          "exposure_event": {
+            "type": "keyword"
+          },
+          "exposure_setting": {
+            "type": "keyword"
+          },
+          "first_dose_vaccination_date": {
+            "type": "date"
+          },
+          "host_age": {
+            "type": "keyword"
+          },
+          "host_age_bin": {
+            "type": "keyword"
+          },
+          "host_age_unit": {
+            "type": "keyword"
+          },
+          "host_common_name": {
+            "type": "keyword"
+          },
+          "host_disease": {
+            "type": "keyword"
+          },
+          "host_disease_outcome": {
+            "type": "keyword"
+          },
+          "host_ethnicity": {
+            "type": "keyword"
+          },
+          "host_gender": {
+            "type": "keyword"
+          },
+          "host_health_state": {
+            "type": "keyword"
+          },
+          "host_health_status_details": {
+            "type": "keyword"
+          },
+          "host_id": {
+            "type": "keyword",
+            "fields": {
+              "text": {
+                "type": "text"
+              }
+            }
+          },
+          "host_residence_geo_loc_name_city": {
+            "type": "keyword"
+          },
+          "host_residence_geo_loc_name_country": {
+            "type": "keyword"
+          },
+          "host_residence_geo_loc_name_county_region": {
+            "type": "keyword"
+          },
+          "host_residence_geo_loc_name_state_province_territory": {
+            "type": "keyword"
+          },
+          "host_residence_geo_loc_postal_code": {
+            "type": "keyword"
+          },
+          "host_role": {
+            "type": "keyword"
+          },
+          "host_scientific_name": {
+            "type": "keyword"
+          },
+          "host_subject_id": {
+            "type": "keyword",
+            "fields": {
+              "text": {
+                "type": "text"
+              }
+            }
+          },
+          "host_vaccination_status": {
+            "type": "keyword"
+          },
+          "last_dose_vaccination_date": {
+            "type": "date"
+          },
+          "location_of_exposure_geo_loc_name_city": {
+            "type": "keyword"
+          },
+          "location_of_exposure_geo_loc_name_country": {
+            "type": "keyword"
+          },
+          "location_of_exposure_geo_loc_name_county_region": {
+            "type": "keyword"
+          },
+          "location_of_exposure_geo_loc_name_state_province_territory": {
+            "type": "keyword"
+          },
+          "location_of_exposure_geo_loc_postal_code": {
+            "type": "keyword"
+          },
+          "most_recent_travel_departure_date": {
+            "type": "date"
+          },
+          "most_recent_travel_return_date": {
+            "type": "date"
+          },
+          "number_of_vaccine_doses_received": {
+            "type": "integer"
+          },
+          "preexisting_conditions_risk_factors": {
+            "type": "keyword"
+          },
+          "prior_sarscov2_antiviral_treatment": {
+            "type": "keyword"
+          },
+          "prior_sarscov2_antiviral_treatment_agent": {
+            "type": "keyword"
+          },
+          "prior_sarscov2_antiviral_treatment_date": {
+            "type": "date"
+          },
+          "prior_sarscov2_infection": {
+            "type": "keyword"
+          },
+          "prior_sarscov2_infection_date": {
+            "type": "date"
+          },
+          "prior_sarscov2_infection_isolate": {
+            "type": "keyword"
+          },
+          "signs_and_symptoms": {
+            "type": "keyword"
+          },
+          "symptom_onset_date": {
+            "type": "date"
+          },
+          "travel_history": {
+            "type": "text"
+          },
+          "vaccine_name": {
+            "type": "keyword"
+          }
+        }
+      },
+      "library_id": {
+        "type": "keyword"
+      },
+      "library_preparation_kit": {
+        "type": "keyword"
+      },
+      "lineage_clade_analysis_software_name": {
+        "type": "keyword"
+      },
+      "lineage_clade_analysis_software_version": {
+        "type": "keyword"
+      },
+      "lineage_clade_name": {
+        "type": "keyword"
+      },
+      "ns_per_100_kbp": {
+        "type": "keyword"
+      },
+      "nucleotide_completeness": {
+        "type": "keyword"
+      },
+      "number_base_pairs_sequenced": {
+        "type": "integer"
+      },
+      "publications": {
+        "type": "keyword"
+      },
+      "purpose_of_sequencing": {
+        "type": "keyword"
+      },
+      "purpose_of_sequencing_details": {
+        "type": "text"
+      },
+      "r1_fast_filepath": {
+        "type": "keyword"
+      },
+      "r1_fastq_filename": {
+        "type": "text"
+      },
+      "r2_fastq_filename": {
+        "type": "text"
+      },
+      "r2_fastq_filepath": {
+        "type": "text"
+      },
+      "raw_sequence_data_processing_method": {
+        "type": "keyword"
+      },
+      "reference_genome_accession": {
+        "type": "keyword"
+      },
+      "release_date": {
+        "type": "date"
+      },
+      "sample": {
+        "properties": {
+          "anatomical_material": {
+            "type": "keyword"
+          },
+          "anatomical_part": {
+            "type": "keyword"
+          },
+          "authors": {
+            "type": "text"
+          },
+          "biomaterial_extracted": {
+            "type": "keyword"
+          },
+          "bioproject_accession": {
+            "type": "keyword"
+          },
+          "bioproject_umbrella_accession": {
+            "type": "keyword"
+          },
+          "biosample_accession": {
+            "type": "keyword"
+          },
+          "body_product": {
+            "type": "keyword"
+          },
+          "collection_device": {
+            "type": "keyword"
+          },
+          "collection_method": {
+            "type": "keyword"
+          },
+          "collection_protocol": {
+            "type": "keyword"
+          },
+          "culture_collection": {
+            "type": "keyword"
+          },
+          "data_abstraction_details": {
+            "type": "text"
+          },
+          "diagnostic_pcr_ct_value_1": {
+            "type": "keyword"
+          },
+          "diagnostic_pcr_ct_value_2": {
+            "type": "keyword"
+          },
+          "diagnostic_pcr_protocol_1": {
+            "type": "keyword"
+          },
+          "diagnostic_pcr_protocol_2": {
+            "type": "keyword"
+          },
+          "environmental_material": {
+            "type": "keyword"
+          },
+          "environmental_site": {
+            "type": "keyword"
+          },
+          "gene_name_1": {
+            "type": "keyword"
+          },
+          "gene_name_2": {
+            "type": "keyword"
+          },
+          "geo_loc_latitude": {
+            "type": "keyword"
+          },
+          "geo_loc_longitude": {
+            "type": "keyword"
+          },
+          "geo_loc_name_city": {
+            "type": "keyword"
+          },
+          "geo_loc_name_country": {
+            "type": "keyword"
+          },
+          "geo_loc_name_county_region": {
+            "type": "keyword"
+          },
+          "geo_loc_name_state_province_territory": {
+            "type": "keyword"
+          },
+          "geo_loc_postal_code": {
+            "type": "keyword"
+          },
+          "host_specimen_voucher": {
+            "type": "text"
+          },
+          "isolate": {
+            "type": "keyword"
+          },
+          "lab_host": {
+            "type": "keyword"
+          },
+          "organism": {
+            "type": "keyword"
+          },
+          "passage_method": {
+            "type": "text"
+          },
+          "passage_number": {
+            "type": "keyword"
+          },
+          "purpose_of_sample_details": {
+            "type": "keyword"
+          },
+          "purpose_of_sampling": {
+            "type": "keyword"
+          },
+          "sample_collected_by": {
+            "type": "keyword"
+          },
+          "sample_collected_in_quarantine": {
+            "type": "keyword"
+          },
+          "sample_collection_date": {
+            "type": "date"
+          },
+          "sample_collector_contact_address": {
+            "type": "text"
+          },
+          "sample_collector_contact_email": {
+            "type": "text"
+          },
+          "sample_id": {
+            "type": "keyword",
+            "fields": {
+              "text": {
+                "type": "text"
+              }
+            }
+          },
+          "sample_plan_name": {
+            "type": "keyword"
+          },
+          "sample_received_date": {
+            "type": "date"
+          },
+          "sequencing_date": {
+            "type": "date"
+          },
+          "specimen_collector_sample_id": {
+            "type": "keyword",
+            "fields": {
+              "text": {
+                "type": "text"
+              }
+            }
+          },
+          "specimen_processing": {
+            "type": "keyword"
+          }
+        }
+      },
+      "sample_id": {
+        "type": "keyword",
+        "fields": {
+          "text": {
+            "type": "text"
+          }
+        }
+      },
+      "sequence_id": {
+        "type": "keyword",
+        "fields": {
+          "text": {
+            "type": "text"
+          }
+        }
+      },
+      "sequence_submitted_by": {
+        "type": "keyword"
+      },
+      "sequence_submitter_contact_address": {
+        "type": "text"
+      },
+      "sequence_submitter_contact_email": {
+        "type": "text"
+      },
+      "sequencing_instrument": {
+        "type": "keyword"
+      },
+      "sequencing_kit_number": {
+        "type": "keyword"
+      },
+      "sequencing_protocol": {
+        "type": "keyword"
+      },
+      "sequencing_protocol_name": {
+        "type": "text"
+      },
+      "sra_accession": {
+        "type": "keyword"
+      },
+      "variant_designation": {
+        "type": "keyword"
+      },
+      "variant_evidence": {
+        "type": "keyword"
+      }
+    }
+  }
+}

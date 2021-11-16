@@ -7,6 +7,7 @@ import transform from './stages/transform';
 import load from './stages/load';
 import main from './main';
 import Logger from './logger';
+
 const logger = Logger('ETL');
 
 export enum STAGE {

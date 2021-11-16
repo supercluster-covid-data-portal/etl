@@ -48,10 +48,6 @@ const configureIndex = async (index: Index): Promise<void> => {
   try {
     await client.indices.close({ index: index.indexName });
 
-    // await client.indices.putSettings({
-    //   index: index.indexName,
-    //   body: { ...indexMapping.settings, 'index.blocks.write': false },
-    // });
     await client.indices.putMapping({
       index: index.indexName,
       body: indexMapping.mappings,

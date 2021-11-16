@@ -22,9 +22,9 @@ Follow these steps to run the ETL in your local development environment, using d
 
 1. Install NPM dependencies:
 
-```bash
-npm ci
-```
+   ```bash
+   npm ci
+   ```
 
 1. Start docker services:
 

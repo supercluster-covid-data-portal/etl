@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mongodb:
+    container_name: etl_db
+    image: 'bitnami/mongodb:4.0'
+    ports:
+      - '27027:27017'
+    volumes:
+      - 'mongodb_data_etl:/bitnami'
+    environment:
+      MONGODB_USERNAME: admin
+      MONGODB_PASSWORD: password
+      MONGODB_DATABASE: etl
+      MONGODB_ROOT_PASSWORD: password123
+
+  ################################
+  ####  Elastic containers    ####
+  ################################
+  elasticsearch:
+    image: 'elasticsearch:7.5.0'
+    ports:
+      - 9200:9200
+    volumes:
+      - es_data:/usr/share/elasticsearch/supercluster_data
+    environment:
+      - discovery.type=single-node
+      - cluster.name=files.elasticsearch
+      - 'ES_JAVA_OPTS=-Xms512m -Xmx2048m'
+      - path.repo=/usr/share/elasticsearch
+
+  kibana:
+    image: 'kibana:7.5.0'
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+
+  rollcall:
+    image: overture/rollcall:2.6.0
+    depends_on:
+      - elasticsearch
+    ports:
+      - '9001:9001'
+    environment:
+      ELASTICSEARCH_NODE: http://elasticsearch:9200
+      # ELASTICSEARCH_AUTHENABLED: 'true'
+      # ELASTICSEARCH_USER: elastic
+      # ELASTICSEARCH_PASSWORD:
+      SPRING_PROFILES_ACTIVE: test
+      SERVER_PORT: 9001
+      ROLLCALL_ALIASES_0_ALIAS: sequence_centric
+      ROLLCALL_ALIASES_0_ENTITY: sequence
+      ROLLCALL_ALIASES_0_TYPE: centric
+      ROLLCALL_ALIASES_0_RELEASEROTATION: 2
+      SPRING_CLOUD_VAULT_ENABLED: 'false'
+
+volumes:
+  mongodb_data_etl:
+    name: appdbetl_db_vol
+    driver: local
+  es_data:
+    name: es_data_vol
+    driver: local

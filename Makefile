@@ -4,7 +4,7 @@ docker-start:
 
 # Stop all docker containers
 docker-stop:
-	docker-compose  -f docker-compose/docker-compose.yaml down --remove-orphans 
+	docker-compose -f docker-compose/docker-compose.yaml down --remove-orphans 
 
 # Stop all docker containers and remove all data volumes.
 docker-nuke:

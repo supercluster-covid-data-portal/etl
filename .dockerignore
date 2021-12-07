@@ -2,3 +2,5 @@
 /docker-compose
 Makefile
 README.md
+.env
+.env.example

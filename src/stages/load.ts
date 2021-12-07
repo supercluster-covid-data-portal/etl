@@ -7,7 +7,7 @@ import Timer from '../timer';
 import Logger from '../logger';
 import { Client } from '@elastic/elasticsearch';
 const timer = Timer();
-const logger = Logger('Load');
+const logger = Logger('Load', timer);
 
 const ES_BATCH_SIZE = 50;
 

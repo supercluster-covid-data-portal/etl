@@ -55,6 +55,7 @@ export const connect = async () => {
 export const close = async () => {
   if (connected) {
     await client.close();
+    connected = false;
     logger.info('DB Connection Closed');
   } else {
     logger.warn('DB close was requested, but there is no active connection. No action taken.');

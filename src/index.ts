@@ -2,7 +2,7 @@ import { Command } from 'commander';
 import _ from 'lodash';
 
 import { STAGE } from './types';
-import runStages from './stages';
+import enqueue from './stages';
 import * as allStagesJob from './cronjobs/allStagesJob';
 import initServer from './server';
 
@@ -53,7 +53,7 @@ if (options.load) {
  */
 if (stages.size > 0) {
   // If any stages were requested, lets run the main program
-  runStages(Array.from(stages));
+  enqueue(Array.from(stages));
 } else if (!options.cron && !options.server) {
   // Otherwise shut it down
   logger.error('No stages or instructions provided. Nothing will run.');

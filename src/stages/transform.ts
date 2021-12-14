@@ -4,7 +4,7 @@ import { Collection as MongoCollection, Db, Document } from 'mongodb';
 
 import { collections, getDb } from '../external/mongo';
 import { Collection, DataSource, File, Host, Sample, Sequence } from '../external/dnaStack/types';
-import Timer from '../timer';
+import Timer from '../utils/timer';
 import {
   SequenceCentric,
   SequenceCentric_DataSource,
@@ -12,7 +12,7 @@ import {
   SequenceCentric_Host,
   SequenceCentric_Sample,
 } from './types';
-import Logger from '../logger';
+import Logger from '../utils/logger';
 
 const timer = Timer();
 const logger = Logger('Transform', timer);

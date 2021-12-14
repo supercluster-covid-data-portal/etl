@@ -9,18 +9,19 @@
     "dynamic": false,
     "properties": {
       "amplicon_pcr_primer_scheme": {
-        "type": "text"
+        "type": "keyword"
       },
       "amplicon_size": {
         "type": "keyword"
       },
       "bioinformatics_protocol": {
-        "type": "text"
+        "type": "keyword"
       },
       "breadth_of_coverage_value": {
         "type": "keyword"
       },
       "collections": {
+        "type": "nested",
         "properties": {
           "collection_id": {
             "type": "keyword",
@@ -39,10 +40,10 @@
         "type": "integer"
       },
       "consensus_sequence_filename": {
-        "type": "text"
+        "type": "keyword"
       },
       "consensus_sequence_filepath": {
-        "type": "text"
+        "type": "keyword"
       },
       "consensus_sequence_name": {
         "type": "keyword"
@@ -81,15 +82,16 @@
         "type": "keyword"
       },
       "fast5_filename": {
-        "type": "text"
+        "type": "keyword"
       },
       "fast5_filepath": {
-        "type": "text"
+        "type": "keyword"
       },
       "files": {
+        "type": "nested",
         "properties": {
           "drs_filepath": {
-            "type": "text"
+            "type": "keyword"
           },
           "file_id": {
             "type": "keyword",
@@ -140,7 +142,7 @@
             "type": "keyword"
           },
           "exposure_details": {
-            "type": "text"
+            "type": "keyword"
           },
           "exposure_event": {
             "type": "keyword"
@@ -276,7 +278,7 @@
             "type": "date"
           },
           "travel_history": {
-            "type": "text"
+            "type": "keyword"
           },
           "vaccine_name": {
             "type": "keyword"
@@ -314,19 +316,19 @@
         "type": "keyword"
       },
       "purpose_of_sequencing_details": {
-        "type": "text"
+        "type": "keyword"
       },
       "r1_fast_filepath": {
         "type": "keyword"
       },
       "r1_fastq_filename": {
-        "type": "text"
+        "type": "keyword"
       },
       "r2_fastq_filename": {
-        "type": "text"
+        "type": "keyword"
       },
       "r2_fastq_filepath": {
-        "type": "text"
+        "type": "keyword"
       },
       "raw_sequence_data_processing_method": {
         "type": "keyword"
@@ -346,7 +348,7 @@
             "type": "keyword"
           },
           "authors": {
-            "type": "text"
+            "type": "keyword"
           },
           "biomaterial_extracted": {
             "type": "keyword"
@@ -376,7 +378,7 @@
             "type": "keyword"
           },
           "data_abstraction_details": {
-            "type": "text"
+            "type": "keyword"
           },
           "diagnostic_pcr_ct_value_1": {
             "type": "keyword"
@@ -424,7 +426,7 @@
             "type": "keyword"
           },
           "host_specimen_voucher": {
-            "type": "text"
+            "type": "keyword"
           },
           "isolate": {
             "type": "keyword"
@@ -436,7 +438,7 @@
             "type": "keyword"
           },
           "passage_method": {
-            "type": "text"
+            "type": "keyword"
           },
           "passage_number": {
             "type": "keyword"
@@ -457,10 +459,10 @@
             "type": "date"
           },
           "sample_collector_contact_address": {
-            "type": "text"
+            "type": "keyword"
           },
           "sample_collector_contact_email": {
-            "type": "text"
+            "type": "keyword"
           },
           "sample_id": {
             "type": "keyword",
@@ -512,10 +514,10 @@
         "type": "keyword"
       },
       "sequence_submitter_contact_address": {
-        "type": "text"
+        "type": "keyword"
       },
       "sequence_submitter_contact_email": {
-        "type": "text"
+        "type": "keyword"
       },
       "sequencing_instrument": {
         "type": "keyword"
@@ -527,7 +529,7 @@
         "type": "keyword"
       },
       "sequencing_protocol_name": {
-        "type": "text"
+        "type": "keyword"
       },
       "sra_accession": {
         "type": "keyword"

@@ -1,7 +1,7 @@
 {
   "name": "etl",
-  "version": "1.0.0",
-  "description": "Extract DNAStack Host data and transform it into Sequence-centric ElasticSearch index",
+  "version": "2.0.0",
+  "description": "Extract DNAStack data and transform it into Sequence-centric ElasticSearch index",
   "main": "dist/index.js",
   "scripts": {
     "build": "NODE_PATH=./src tsc",
@@ -9,7 +9,10 @@
     "transform": "node --max-old-space-size=4096 dist --transform",
     "load": "node dist --load",
     "all": "node --max-old-space-size=4096 dist --all",
-    "dev": "npm run build && npm run all"
+    "cron": "node --max-old-space-size=4096 dist --cron",
+    "server": "node --max-old-space-size=4096 dist --server",
+    "cronserver": "node --max-old-space-size=4096 dist --cron --server",
+    "dev": "npm run build && npm run cronserver"
   },
   "repository": {
     "type": "git",
@@ -32,16 +35,22 @@
     "@elastic/elasticsearch": "7.13.0",
     "@supercharge/promise-pool": "^2.0.0",
     "commander": "^8.3.0",
+    "cron": "^1.8.2",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "lodash": "^4.17.21",
     "mongodb": "^4.1.4",
+    "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",
     "typescript": "^4.4.4",
     "url-join": "^4.0.1",
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@types/cron": "^1.7.3",
+    "@types/express": "^4.17.13",
     "@types/lodash": "^4.14.176",
+    "@types/morgan": "^1.9.3",
     "@types/node-fetch": "^2.0.0",
     "@types/url-join": "^4.0.1"
   },

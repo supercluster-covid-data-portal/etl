@@ -14,8 +14,7 @@ const getStatus = (job?: CronJob) => {
       active: job.running,
       init: true,
       last: job.lastDate() || 'Not run since ETL last restarted.',
-      next: job.nextDate(),
-      nextEST: job.nextDate().toDate().toLocaleString(),
+      next: job.running ? job.nextDate() : 'Cron job is deactivated.',
       schedule: config.cron.schedule,
     };
   } else {

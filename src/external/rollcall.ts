@@ -84,7 +84,7 @@ export const fetchNextIndex = async (): Promise<Index> => {
     logger.info(`New index: ${newIndex.indexName}`);
     return newIndex;
   } catch (err) {
-    logger.error('Failed to get new index', err);
+    logger.error('Failed to get new index:', err);
     throw err;
   }
 };

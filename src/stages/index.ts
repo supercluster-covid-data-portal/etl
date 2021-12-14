@@ -27,7 +27,7 @@ async function recordSummary(summary: ETLSummary) {
   }
 }
 
-export const inMemoryQueue = new Queue(1);
+const inMemoryQueue = new Queue(1);
 
 async function run(stages: STAGE[]) {
   timer.start();
@@ -81,5 +81,12 @@ async function runStages(stages: STAGE[]) {
     await run(stages);
   });
 }
+
+export const getInmemoryQueueStatus = () => {
+  return {
+    pending: inMemoryQueue.getPendingLength(),
+    inflight: inMemoryQueue.getQueueLength(),
+  };
+};
 
 export default runStages;

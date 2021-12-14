@@ -21,4 +21,10 @@ export default {
     alias: process.env.ROLLCALL_ALIAS as string,
     entity: process.env.ROLLCALL_ENTITY as string,
   },
+  cron: {
+    schedule: process.env.ALL_STAGES_SCHEDULE as string,
+  },
+  server: {
+    port: Number(process.env.SERVER_PORT) || 8081,
+  },
 };

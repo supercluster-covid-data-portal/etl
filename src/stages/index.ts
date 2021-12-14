@@ -1,15 +1,15 @@
 import _ from 'lodash';
 
-import * as mongo from './external/mongo';
-import extract from './stages/extract';
-import transform from './stages/transform';
-import load from './stages/load';
-import { STAGE } from './index';
-import Timer from './timer';
-import Logger from './logger';
+import * as mongo from '../external/mongo';
+import extract from './extract';
+import transform from './transform';
+import load from './load';
+import { STAGE } from '../types';
+import Timer from '../utils/timer';
+import Logger from '../utils/logger';
 
 const timer = Timer();
-const logger = Logger('Main', timer);
+const logger = Logger('ETL Executor', timer);
 
 type ETLSummary = {
   extract?: any;
@@ -26,13 +26,13 @@ async function recordSummary(summary: ETLSummary) {
   }
 }
 
-async function main(stages: STAGE[]) {
+async function runStages(stages: STAGE[]) {
   timer.start();
 
   const summary: ETLSummary = { stages, errors: [] };
   let activeStage;
   try {
-    logger.info('#####', 'STARTING ETL');
+    logger.info('#####', 'STARTING');
     logger.info('Stages to run:', ...stages);
 
     if (stages.includes(STAGE.EXTRACT) && stages.includes(STAGE.LOAD) && !stages.includes(STAGE.TRANSFORM)) {
@@ -69,8 +69,8 @@ async function main(stages: STAGE[]) {
     await mongo.close();
 
     logger.info('Summary', summary);
-    logger.info('#####', 'FINISHED ETL');
+    logger.info('#####', 'FINISHED');
   }
 }
 
-export default main;
+export default runStages;

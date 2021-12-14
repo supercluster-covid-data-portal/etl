@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 import * as Fetcher from '../external/dnaStack';
 import { collections } from '../external/mongo';
-import Timer from '../timer';
-import Logger from '../logger';
+import Timer from '../utils/timer';
+import Logger from '../utils/logger';
 
 const timer = Timer();
 const logger = Logger('Extract', timer);

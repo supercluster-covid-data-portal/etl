@@ -20,7 +20,7 @@
 import fetch from 'node-fetch';
 import urljoin from 'url-join';
 
-import Logger from '../logger';
+import Logger from '../utils/logger';
 import config from '../config';
 import { getClient } from './elasticsearch';
 import indexMapping from '../resources/sequence-centric-mapping.json';

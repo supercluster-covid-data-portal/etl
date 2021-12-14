@@ -36,6 +36,7 @@ ENV APP_UID=1000
 ENV APP_GID=1000
 ENV APP_HOME=/app
 ENV APP_USER=node
+ENV PORT=8081
 
 WORKDIR $APP_HOME
 
@@ -52,3 +53,7 @@ COPY --from=builder \
 COPY --from=builder \
     /usr/node_modules/ \
     $APP_HOME/node_modules/
+
+EXPOSE $PORT
+
+CMD node etl --cron --server

@@ -1,7 +1,7 @@
 import * as mongodb from 'mongodb';
 
 import config from '../config';
-import Logger from '../logger';
+import Logger from '../utils/logger';
 const logger = Logger('Mongo');
 
 const CREDENTIALS = config.mongo.user && config.mongo.password ? `${config.mongo.user}:${config.mongo.password}@` : '';

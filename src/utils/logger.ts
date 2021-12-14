@@ -1,4 +1,5 @@
 import { createLogger, LoggerOptions, transports, format } from 'winston';
+import config from '../config';
 
 import Timer from './timer';
 
@@ -11,7 +12,7 @@ const options: LoggerOptions = {
   ),
   transports: [
     new transports.Console({
-      level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+      level: config.logLevel ? config.logLevel : process.env.NODE_ENV === 'production' ? 'info' : 'debug',
     }),
   ],
 };

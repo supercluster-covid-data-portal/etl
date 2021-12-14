@@ -22,7 +22,7 @@ export default {
     entity: process.env.ROLLCALL_ENTITY as string,
   },
   cron: {
-    schedule: process.env.ALL_STAGES_SCHEDULE as string,
+    schedule: (process.env.ALL_STAGES_SCHEDULE as string) || '0 0 * * *',
   },
   server: {
     port: Number(process.env.SERVER_PORT) || 8081,

@@ -29,7 +29,7 @@ async function recordSummary(summary: ETLSummary) {
 
 const inMemoryQueue = new Queue(1);
 
-async function run(stages: STAGE[]) {
+async function runStages(stages: STAGE[]) {
   timer.start();
 
   const summary: ETLSummary = { stages, errors: [] };
@@ -75,10 +75,10 @@ async function run(stages: STAGE[]) {
   }
 }
 
-async function runStages(stages: STAGE[]) {
+export async function enqueue(stages: STAGE[]) {
   logger.info('===== enqueued new task =====');
   await inMemoryQueue.add(async () => {
-    await run(stages);
+    await runStages(stages);
   });
 }
 
@@ -89,4 +89,4 @@ export const getInmemoryQueueStatus = () => {
   };
 };
 
-export default runStages;
+export default (stages: STAGE[]) => enqueue(stages);

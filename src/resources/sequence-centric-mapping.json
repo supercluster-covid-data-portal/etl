@@ -69,7 +69,7 @@
           }
         }
       },
-      "date_submitted": {
+      "sequence_submitted_date": {
         "type": "date"
       },
       "dehosting_method": {
@@ -336,7 +336,7 @@
       "reference_genome_accession": {
         "type": "keyword"
       },
-      "release_date": {
+      "sequence_release_date": {
         "type": "date"
       },
       "sample": {

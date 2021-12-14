@@ -45,8 +45,7 @@ async function runStages(stages: STAGE[]) {
 
     if (stages.includes(STAGE.EXTRACT)) {
       activeStage = STAGE.EXTRACT;
-      const extractSummary = await extract();
-      summary.extract = extractSummary;
+      summary.extract = await extract();
     }
     if (stages.includes(STAGE.TRANSFORM)) {
       activeStage = STAGE.TRANSFORM;

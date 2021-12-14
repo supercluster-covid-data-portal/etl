@@ -8,6 +8,7 @@ import { STAGE } from '../types';
 import Timer from '../utils/timer';
 import Logger from '../utils/logger';
 import Queue from 'promise-queue';
+import { v4 as uuid } from 'uuid';
 
 const timer = Timer();
 const logger = Logger('ETL Executor', timer);
@@ -75,10 +76,13 @@ async function runStages(stages: STAGE[]) {
   }
 }
 
-export async function enqueue(stages: STAGE[]) {
-  logger.info('===== enqueued new task =====');
+async function enqueue(stages: STAGE[]) {
+  const taskId = uuid();
+  logger.info(`===== enqueued task ${taskId} =====`);
   await inMemoryQueue.add(async () => {
+    logger.info(`----- starting task ${taskId} -----`);
     await runStages(stages);
+    logger.info(`----- completed task ${taskId} -----`);
   });
 }
 

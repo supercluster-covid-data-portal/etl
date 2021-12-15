@@ -108,3 +108,26 @@ Most relevant are the commands to select which stages to run. If no stage argume
 
 > **NOTE**  
 > You can perform any combination of the stages in a single run of the application, except it will not run the specific combination of only **extract** and **load** (while skipping **transform**). This is because running **load** will use whatever data is in the mongo sequence-centric collection, which in this case would be data from a previous run, not from the **extract** just performed. There is no technical limitation demanding this, it is simply there to prevent accidentally loading different data than you have just extracted.
+
+## Server Routes
+
+No Swagger is provided, but the following API endpoints are available when the application is run with the `--server` option.
+
+### Cron Job Status
+
+Details about the cronjob scheduled ETL.
+
+`GET /jobs` - Summary of cron job status. This includes when the job will next run, the cronjob schedule from config, and if the cronjob is enabled to run or not. If the status reports `init: false` that means the cronjob version of the ETL is not initialized, likely because the service was run without the `--cron` option.
+
+`POST /jobs/deactivate` - Deactive the ETL cronjob. When deactivate, it will not be run on the schedule.
+`POST /jobs/activate` - Reactives the ETL cronjob. When activate, it will be run on the schedule.
+
+### ETL
+
+API to start the ETL immediately. All stages can be run, or each stage can be called individually:
+
+`POST /etl/all` - Run all stages.
+
+`POST /etl/extract` - Run only the extract stage.
+`POST /etl/transform` - Run only the transform stage.
+`POST /etl/load` - Run only the load stage.

@@ -78,6 +78,19 @@ spec:
       }
     }
 
+    stage('Run Update-App-Version') {
+      when {
+        branch "develop"
+      }
+      steps {
+        build(job: "supercluster/update-app-version", parameters: [
+          [$class: 'StringParameterValue', name: 'SUPERCLUSTER_ENV', value: 'dev' ],
+          [$class: 'StringParameterValue', name: 'TARGET_RELEASE', value: 'etl'],
+          [$class: 'StringParameterValue', name: 'NEW_APP_VERSION', value: "${commit}" ]
+        ])
+      }
+    }
+
     stage('Release & Tag') {
       when {
         anyOf {
@@ -86,9 +99,9 @@ spec:
       }
       steps {
         container('docker') {
-          withCredentials([string(credentialsId: 'supercluster-jenkins', variable: 'GITHUB_ACCESS_TOKEN', usernameVariable: 'GITHUB_APP')]) {
+          withCredentials([usernamePassword(credentialsId: 'supercluster-jenkins', passwordVariable: 'GITHUB_ACCESS_TOKEN', usernameVariable: 'GITHUB_APP')]) {
             sh "git tag ${version}"
-            sh "git push https://${GITHUB_ACCESS_TOKEN}@github.com/${githubRepo} --tags"
+            sh "git push https://x-access-token:${GITHUB_ACCESS_TOKEN}@github.com/${githubRepo} --tags"
           }
           withCredentials([usernamePassword(credentialsId:'argoContainers', passwordVariable: 'GITHUB_ACCESS_TOKEN', usernameVariable: 'GITHUB_APP', )]) {
             sh 'echo $GITHUB_ACCESS_TOKEN | docker login ghcr.io -u $GITHUB_APP --password-stdin'

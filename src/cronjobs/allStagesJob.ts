@@ -2,7 +2,7 @@ import { CronJob } from 'cron';
 
 import { STAGE } from '../types';
 import config from '../config';
-import enqueue from '../stages';
+import enqueueStages from '../stages';
 import Logger from '../utils/logger';
 
 const logger = Logger('All Stages Job');
@@ -19,7 +19,7 @@ export const init = () => {
   job = new CronJob(
     config.cron.schedule,
     function () {
-      enqueue([STAGE.EXTRACT, STAGE.TRANSFORM, STAGE.LOAD]);
+      enqueueStages([STAGE.EXTRACT, STAGE.TRANSFORM, STAGE.LOAD]);
     },
     null,
     true,

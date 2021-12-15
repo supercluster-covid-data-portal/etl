@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { STAGE } from '../types';
-import enqueue from '../stages';
+import enqueueStages from '../stages';
 
 import Logger from '../utils/logger';
 const logger = Logger('Router:ETL');
@@ -9,7 +9,7 @@ const router: Router = Router();
 
 router.post('/all', (_, res) => {
   logger.info('Starting ETL for all stages...');
-  enqueue([STAGE.EXTRACT, STAGE.TRANSFORM, STAGE.LOAD]);
+  enqueueStages([STAGE.EXTRACT, STAGE.TRANSFORM, STAGE.LOAD]);
 
   res.status(200).json({
     status: 'started',
@@ -18,7 +18,7 @@ router.post('/all', (_, res) => {
 });
 router.post('/extract', (_, res) => {
   logger.info(`Starting ETL for ${STAGE.EXTRACT} stage...`);
-  enqueue([STAGE.EXTRACT]);
+  enqueueStages([STAGE.EXTRACT]);
 
   res.status(200).json({
     status: 'started',
@@ -27,7 +27,7 @@ router.post('/extract', (_, res) => {
 });
 router.post('/transform', (_, res) => {
   logger.info(`Starting ETL for ${STAGE.TRANSFORM} stage...`);
-  enqueue([STAGE.TRANSFORM]);
+  enqueueStages([STAGE.TRANSFORM]);
 
   res.status(200).json({
     status: 'started',
@@ -36,7 +36,7 @@ router.post('/transform', (_, res) => {
 });
 router.post('/load', (_, res) => {
   logger.info(`Starting ETL for ${STAGE.LOAD} stage...`);
-  enqueue([STAGE.LOAD]);
+  enqueueStages([STAGE.LOAD]);
 
   res.status(200).json({
     status: 'started',

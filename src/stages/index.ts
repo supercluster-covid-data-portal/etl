@@ -76,7 +76,7 @@ async function runStages(stages: STAGE[]) {
   }
 }
 
-async function enqueue(stages: STAGE[]) {
+async function enqueueStages(stages: STAGE[]) {
   const taskId = uuid();
   logger.info(`===== enqueued task ${taskId} =====`);
   await inMemoryQueue.add(async () => {
@@ -93,4 +93,4 @@ export const getInmemoryQueueStatus = () => {
   };
 };
 
-export default (stages: STAGE[]) => enqueue(stages);
+export default enqueueStages;

@@ -18,6 +18,9 @@ type ETLSummary = {
   duration?: number;
   errors: string[];
   stages: STAGE[];
+  start: Date;
+  end?: Date;
+  trigger: string;
 };
 
 async function recordSummary(summary: ETLSummary) {
@@ -26,10 +29,10 @@ async function recordSummary(summary: ETLSummary) {
   }
 }
 
-async function runStages(stages: STAGE[]) {
+async function runStages(stages: STAGE[], trigger: string) {
   timer.start();
 
-  const summary: ETLSummary = { stages, errors: [] };
+  const summary: ETLSummary = { stages, errors: [], trigger, start: new Date() };
   let activeStage;
   try {
     logger.info('#####', 'STARTING');
@@ -64,6 +67,7 @@ async function runStages(stages: STAGE[]) {
     summary.errors.push((e as Error).message);
   } finally {
     summary.duration = timer.time();
+    summary.end = new Date();
     await recordSummary(summary);
     await mongo.close();
 

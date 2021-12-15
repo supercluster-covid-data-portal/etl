@@ -19,7 +19,7 @@ export const init = () => {
   job = new CronJob(
     config.cron.schedule,
     function () {
-      runStages([STAGE.EXTRACT, STAGE.TRANSFORM, STAGE.LOAD]);
+      runStages([STAGE.EXTRACT, STAGE.TRANSFORM, STAGE.LOAD], 'AllStages CronJob');
     },
     null,
     true,

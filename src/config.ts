@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export default {
+  logLevel: process.env.LOG_LEVEL,
   dnastack: {
     host: process.env.DNASTACK_DATA_TABLE_HOST as string,
   },

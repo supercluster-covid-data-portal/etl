@@ -56,18 +56,30 @@ Follow these steps to run the ETL in your local development environment, using d
    npm run all
    ```
 
-   For convenience, there is a script `dev` that will build then run all. Use `npm run dev` to build and run all stages.
+1. Optional for dev:
+   For convenience, there is a script `dev` that will build then run the application as an express server with the ETL scheduled as a cronjob.
 
-### Run Specific Stages
+   ```bash
+   npm run dev
+   ```
+
+### Run Options
 
 Each stage of the ETL has its own script to run ONLY that stage. Make sure you build the code before running.
 
-| Stage     | NPM Script          | CLI Option  | Description                                                                                                            |
-| --------- | ------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Extract   | `npm run extract`   | --extract   | Will fetch all data from the DNA Stack data table APIs. This data is stored in mongo for manipulation in the next step |
-| Transform | `npm run transform` | --transform | Compiles all data fetched during the extract stage into sequence-centric documents and stores these in mongo.          |
-| Load      | `npm run load`      | --load      | Creates a new ElasticSearch index and inserts each of the sequence-centric documents created in the Transform stage.   |
-| All       | `npm run all`       | --all       | Runs all 3 stages in a single run.                                                                                     |
+The application can also run as an express server with an API for initiating the ETL (all stages, or individual stages).
+
+The applicaiton can also run with the ETL scheduled as a cronjob.
+
+| Stage     | NPM Script          | CLI Option  | Description                                                                                                                                                                |
+| --------- | ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Extract   | `npm run extract`   | --extract   | Will fetch all data from the DNA Stack data table APIs. This data is stored in mongo for manipulation in the next step                                                     |
+| Transform | `npm run transform` | --transform | Compiles all data fetched during the extract stage into sequence-centric documents and stores these in mongo.                                                              |
+| Load      | `npm run load`      | --load      | Creates a new ElasticSearch index and inserts each of the sequence-centric documents created in the Transform stage.                                                       |
+| All       | `npm run all`       | --all       | Runs all 3 stages in a single run.                                                                                                                                         |
+|           |                     |             |                                                                                                                                                                            |
+| Cron      | `npm run cron`      | --cron      | Runs as long lived application that will trigger the ETL (all stages) on a cronjob type schedule. The schedule is configured in the env and defaults to daily at midnight. |
+| Server    | `npm run server`    | --server    | Runs express server with api for running the ETL or interacting with the cronjob (if enabled).                                                                             |
 
 > **Warning**  
 > The extract and transform stages are destructive, they will remove then replace all previously extracted or transformed data stored in mongo.

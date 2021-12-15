@@ -17,7 +17,7 @@ import Logger from '../utils/logger';
 const timer = Timer();
 const logger = Logger('Transform', timer);
 
-type TransferSummary = { documentsCreated: number; duration: number };
+type TransformSummary = { documentsCreated: number; duration: number };
 
 let sequenceCount = 0;
 
@@ -151,9 +151,9 @@ async function readCollection(collection: MongoCollection): Promise<Document[]> 
  *
  * Approx completion time: 30 mins
  */
-async function transform(): Promise<TransferSummary> {
+async function transform(): Promise<TransformSummary> {
   timer.start();
-  logger.info('###', 'STARTING TRANSFER');
+  logger.info('###', 'STARTING TRANSFORM');
 
   const db = await getDb();
   const centricCollection = db.collection('sequencecentric');
@@ -183,9 +183,9 @@ async function transform(): Promise<TransferSummary> {
     .process(async (doc) => await buildSequenceCentric(doc as Sequence, centricCollection));
   logger.info('All documents build.');
 
-  const output: TransferSummary = { documentsCreated: sequenceCount, duration: timer.time() };
-  logger.info('Transfer Summary', output);
-  logger.info('###', 'FINISHED TRANSFER');
+  const output: TransformSummary = { documentsCreated: sequenceCount, duration: timer.time() };
+  logger.info('Transform Summary', output);
+  logger.info('###', 'FINISHED TRANSFORM');
   return output;
 }
 

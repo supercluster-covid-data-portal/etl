@@ -18,7 +18,13 @@ const init = () => {
   server = express();
 
   server.set('json spaces', 4);
-  server.use(morgan('tiny'));
+  server.use(
+    morgan('tiny', {
+      skip: (req, res) => {
+        return ['/health/', '/health', '/'].includes(req.originalUrl);
+      },
+    }),
+  );
 
   server.use('/', healthRouter);
   server.use('/health', healthRouter);

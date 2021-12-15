@@ -7,6 +7,8 @@ import load from './load';
 import { STAGE } from '../types';
 import Timer from '../utils/timer';
 import Logger from '../utils/logger';
+import Queue from 'promise-queue';
+import { v4 as uuid } from 'uuid';
 
 const timer = Timer();
 const logger = Logger('ETL Executor', timer);
@@ -25,6 +27,8 @@ async function recordSummary(summary: ETLSummary) {
     await mongo.collections.runs.insertOne(_.clone(summary));
   }
 }
+
+const inMemoryQueue = new Queue(1);
 
 async function runStages(stages: STAGE[]) {
   timer.start();
@@ -72,4 +76,21 @@ async function runStages(stages: STAGE[]) {
   }
 }
 
-export default runStages;
+async function enqueueStages(stages: STAGE[]) {
+  const taskId = uuid();
+  logger.info(`===== enqueued task ${taskId} =====`);
+  await inMemoryQueue.add(async () => {
+    logger.info(`----- starting task ${taskId} -----`);
+    await runStages(stages);
+    logger.info(`----- completed task ${taskId} -----`);
+  });
+}
+
+export const getInmemoryQueueStatus = () => {
+  return {
+    pending: inMemoryQueue.getPendingLength(),
+    inflight: inMemoryQueue.getQueueLength(),
+  };
+};
+
+export default enqueueStages;

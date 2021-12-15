@@ -53,7 +53,7 @@ if (options.load) {
  */
 if (stages.size > 0) {
   // If any stages were requested, lets run the main program
-  runStages(Array.from(stages));
+  runStages(Array.from(stages), `Command Line`);
 } else if (!options.cron && !options.server) {
   // Otherwise shut it down
   logger.error('No stages or instructions provided. Nothing will run.');

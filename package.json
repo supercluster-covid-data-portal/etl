@@ -1,6 +1,6 @@
 {
   "name": "etl",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Extract DNAStack data and transform it into Sequence-centric ElasticSearch index",
   "main": "dist/index.js",
   "scripts": {
